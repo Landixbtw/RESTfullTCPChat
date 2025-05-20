@@ -13,6 +13,11 @@ public class ServerApp {
      */
 
 
+    /*
+     * parameter für Chatraum? raumnummer?
+     * alles muss irgendwo gespeicherts werden?
+     * wie bleibt alles zusammen?
+     * */
 
     public static void main(String[] args) throws NoSuchPaddingException, NoSuchAlgorithmException {
         Model model = new Model();
