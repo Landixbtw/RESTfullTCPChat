@@ -10,9 +10,7 @@ import javafx.stage.Stage;
  * modified by Markus Schäffter, 2024
  */
 
-/*
- * userInput per Konsole oder auf "Website"?
- * */
+
 public class ClientApp extends Application {
 
     private Parent createContent() {

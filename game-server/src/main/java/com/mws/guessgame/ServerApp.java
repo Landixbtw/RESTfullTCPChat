@@ -5,19 +5,16 @@ import io.javalin.Javalin;
 import javax.crypto.NoSuchPaddingException;
 import java.security.NoSuchAlgorithmException;
 
+import java.time.Duration;
+import java.time.Instant;
+import java.util.HashMap;
+
 public class ServerApp {
 
     /**
      * @author Markus Schäffter, 2020
      * author of the underlying code Almas Baimagambetov (almaslvl@gmail.com)
      */
-
-
-    /*
-     * parameter für Chatraum? raumnummer?
-     * alles muss irgendwo gespeicherts werden?
-     * wie bleibt alles zusammen?
-     * */
 
     public static void main(String[] args) throws NoSuchPaddingException, NoSuchAlgorithmException {
         Model model = new Model();
@@ -39,5 +36,17 @@ public class ServerApp {
             ctx.result(result);
         });
 
+        // Key: ref, value: time
+        HashMap<String, Instant> map = new HashMap<>();
+
+        Instant timestamp1= Instant.now();
+        String strTimestamp1= timestamp1.toString();
+        Instant timestamp1new = Instant.parse(strTimestamp1.toString());
+        Instant timestamp2= timestamp1.plusSeconds(120);
+        long duration = Duration.between(timestamp1, timestamp2).toSeconds();
+
+
+        // key: refInit , value: result
+        //map.put(refInit, );
     }
 }
