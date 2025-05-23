@@ -1,4 +1,5 @@
 package com.mws.guessgame;
+
 import javafx.application.Application;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -8,8 +9,6 @@ import javafx.stage.Stage;
  * @author Almas Baimagambetov (almaslvl@gmail.com)
  * modified by Markus Schäffter, 2024
  */
-
-
 public class ClientApp extends Application {
 
     private Parent createContent() {
