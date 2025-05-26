@@ -4,6 +4,9 @@ import io.javalin.Javalin;
 
 import javax.crypto.NoSuchPaddingException;
 import java.security.NoSuchAlgorithmException;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.HashMap;
 
 public class ServerApp {
 
@@ -12,12 +15,9 @@ public class ServerApp {
      * author of the underlying code Almas Baimagambetov (almaslvl@gmail.com)
      */
 
+    public static void main(String[] args) throws NoSuchPaddingException, NoSuchAlgorithmException {
 
-    /*
-     * parameter für Chatraum? raumnummer?
-     * alles muss irgendwo gespeicherts werden?
-     * wie bleibt alles zusammen?
-     * */
+        HashMap<String, Instant> map = new HashMap<>();
 
     public static void main(String[] args) throws NoSuchPaddingException, NoSuchAlgorithmException {
         Model model = new Model();
@@ -29,6 +29,8 @@ public class ServerApp {
             var max = ctx.req.getParameter("max");
             var result = model.init(Integer.parseInt(min), Integer.parseInt(max));
             ctx.result(result);
+
+            //own code
         });
 
         app.get("/gng/guess", ctx -> {
@@ -37,6 +39,8 @@ public class ServerApp {
 
             var result = model.guess(ref, Integer.parseInt(guess));
             ctx.result(result);
+
+            //own code
         });
 
     }

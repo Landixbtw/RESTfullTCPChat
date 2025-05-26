@@ -1,6 +1,8 @@
 package com.mws.guessgame;
 
 import javax.crypto.*;
+import java.time.Duration;
+import java.time.Instant;
 import java.util.Base64;
 
 /**
@@ -37,15 +39,35 @@ public class Model {
 
     public String init(int min, int max) {
         int rand = min + (int)(Math.random() * ((max - min) + 1));
-        String ref = encodeBase64URL(String.valueOf(rand));
+
+        //own code
+        Instant timestamp= Instant.now();
+        String ref = encodeBase64URL(String.valueOf(rand) + "/" +timestamp.toString());
         return (ref);
 
     }
 
     public String guess(String ref, int guess) throws IllegalBlockSizeException, BadPaddingException {
         String ret = "";
+
+        /*
         int realRef = Integer.parseInt(decodeBase64URL(ref));
         if (realRef == guess) {ret = "OK";}
+        if (realRef < guess) {ret = "Guess smaller";}
+        if (realRef > guess) {ret = "Guess larger";}
+        return ret;*/
+
+        //own code
+        String[] values = decodeBase64URL(ref).split("/");
+
+        int realRef = Integer.parseInt(values[0]);
+        long difference = Duration.between(Instant.parse(values[1]), Instant.now()).toSeconds();
+        
+        String points;
+        if((100 - difference) < 0) points = "0";
+        else points = String.valueOf(100 - difference);
+
+        if (realRef == guess) {ret = "OK, Points: " + points;}
         if (realRef < guess) {ret = "Guess smaller";}
         if (realRef > guess) {ret = "Guess larger";}
         return ret;
